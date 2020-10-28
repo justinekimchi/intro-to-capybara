@@ -50,7 +50,7 @@ pre-existing platform.
 
 #### Basic MVC Flow
 
-Let's take a look at how it all fits together. We'll use an example of a social
+.Let's take a look at how it all fits together. We'll use an example of a social
 networking application.
 
 1.  The user interacts with our application's view(s) via the command line or a
@@ -63,7 +63,7 @@ networking application.
 4.  The model goes to the database, retrieves all of the requested data, and
     gives it to the controller.
 5.  The controller passes that data to a view, and the view displays it to the
-    user.
+    user
 
 ## The Three Levels of Testing
 
@@ -129,15 +129,15 @@ require 'capybara/dsl'
 
 # Configure RSpec
 RSpec.configure do |config|
-  # Mixin the Capybara functionality into Rspec
-  config.include Capybara::DSL
-  config.order = 'default'
+    # Mixin the Capybara functionality into Rspec
+    config.include Capybara::DSL
+    config.order = 'default'
 end
 
 # Define the application we're testing
 def app
-  # Load the application defined in config.ru
-  Rack::Builder.parse_file('config.ru').first
+    # Load the application defined in config.ru
+    Rack::Builder.parse_file('config.ru').first
 end
 
 # Configure Capybara to test against the application above.
@@ -205,10 +205,10 @@ File: `spec/application_integration_spec.rb`
 require 'spec_helper'
 
 describe "GET '/' - Greeting Form" do
-  it 'welcomes the user' do
-    visit '/'
-    expect(page.body).to include("Welcome!")
-  end
+    it 'welcomes the user' do
+        visit '/'
+        expect(page.body).to include('Welcome!')
+    end
 end
 ```
 
@@ -264,9 +264,9 @@ File: `./app.rb`
 
 ```ruby
 class Application < Sinatra::Base
-  get '/' do
-    erb :index
-  end
+    get '/' do
+        erb :index
+    end
 end
 ```
 
@@ -342,19 +342,19 @@ Edit: `spec/application_integration_spec.rb`
 require 'spec_helper'
 
 describe "GET '/' - Greeting Form" do
-  # Code from previous example
-  it 'welcomes the user' do
-    visit '/'
-    expect(page.body).to include("Welcome!")
-  end
+    # Code from previous example
+    it 'welcomes the user' do
+        visit '/'
+        expect(page.body).to include('Welcome!')
+    end
 
-  # New test
-  it 'has a greeting form with a user_name field' do
-    visit '/'
+    # New test
+    it 'has a greeting form with a user_name field' do
+        visit '/'
 
-    expect(page).to have_selector("form")
-    expect(page).to have_field(:user_name)
-  end
+        expect(page).to have_selector('form')
+        expect(page).to have_field(:user_name)
+    end
 end
 ```
 
@@ -419,11 +419,11 @@ Edit: `views/index.erb`
 <h1>Welcome!</h1>
 
 <form action="/greet" method="POST">
-  <label for="user_name">Name:</label>
+    <label for="user_name">Name:</label>
 
-  <p><input type="text" name="user_name" id="user_name" /></p>
+    <p><input type="text" name="user_name" id="user_name" /></p>
 
-  <input type="submit" value="Submit"/>
+    <input type="submit" value="Submit" />
 </form>
 ```
 
@@ -455,14 +455,14 @@ Add the following to the end of the `spec/application_integration_spec.rb` file
 
 ```ruby
 describe "POST '/greet' - User Greeting" do
-  it 'greets the user personally based on their user_name in the form' do
-    visit '/'
+    it 'greets the user personally based on their user_name in the form' do
+        visit '/'
 
-    fill_in(:user_name, :with => "Avi")
-    click_button "Submit"
+        fill_in(:user_name, with: 'Avi')
+        click_button 'Submit'
 
-    expect(page).to have_text("Hi Avi, nice to meet you!")
-  end
+        expect(page).to have_text('Hi Avi, nice to meet you!')
+    end
 end
 ```
 
@@ -537,15 +537,15 @@ Edit: `./app.rb`
 
 ```ruby
 class Application < Sinatra::Base
-  # Old route from previous tests
-  get '/' do
-    erb :index
-  end
+    # Old route from previous tests
+    get '/' do
+        erb :index
+    end
 
-  # New route to respond to the form submission
-  post '/greet' do
-    erb :greet
-  end
+    # New route to respond to the form submission
+    post '/greet' do
+        erb :greet
+    end
 end
 ```
 
@@ -603,7 +603,7 @@ If you receive this error:
 
 `Could not find an executable ["phantomjs"] on your path.`
 
-You'll need to install PhantomJS on your computer before the tests will work. 
+You'll need to install PhantomJS on your computer before the tests will work.
 
 For Mac users, run the following:
 
